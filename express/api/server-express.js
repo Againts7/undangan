@@ -15,7 +15,7 @@ app.use('/src', express.static(path.join(__dirname, 'src')));
 // const authRoutes = require('./routes/auth');
 // const getCommentRoutes = require('./routes/getComment');
 // const getToken = require('./routes/getToken');
-const router = require('./router');
+const router = require('../router');
 
 // app.use('/auth', authRoutes);
 // app.use('/getComment', getCommentRoutes);
