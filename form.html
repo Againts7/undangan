@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submission</title>
+  <!-- Sertakan Bootstrap CSS jika diperlukan -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <form method="post" class="komen p-3 col-10" id="buat-komen">
+    <div class="form-group col-6">
+      <label for="Nama">Nama</label>
+      <input type="text" id="Nama" name="Nama" class="form-control" aria-label="Nama">
+    </div>
+    <div class="form-group col">
+      <label for="komentar" class="form-label">Komentar</label>
+      <input name="komentar" id="komentar" rows="2" placeholder="Komentar anda..."
+        style="resize: none; width: 100%; scrollbar-width: none;" class="form-control" aria-label="Komentar">
+    </div>
+    <div class="form-group col">
+      <button type="submit" class="btn btn-primary" id="cmn" aria-label="Kirim Komentar">
+        <i class="bi bi-send"></i> Kirim
+      </button>
+    </div>
+  </form>
+
+  <div>
+    
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('buat-komen');
+      form.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        console.log('Event listener triggered'); // Debugging log
+
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        data.tanggal = tanggal();
+        console.log('Form Data:', data); // Debugging log
+
+        submitForm(data);
+      });
+
+      function tanggal() {
+        return new Date().toISOString();
+      }
+
+      async function submitForm(data) {
+        try {
+          const response = await fetch('http://localhost:3000/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            const jsonResponse = await response.json();
+            console.log('Success', jsonResponse);
+            alert(JSON.stringify(jsonResponse.message));
+          } else {
+            console.error('Error', response.statusText);
+          }
+        } catch (e) {
+          console.error('err', e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
