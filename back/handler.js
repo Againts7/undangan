@@ -64,4 +64,17 @@ async function deleteComment(request, h) {
   }
 }
 
-module.exports = { postComment, getComment, deleteComment };
+async function getHtml(request, h) {
+  const file = '../dist/index.html';
+  try {
+    const f = await fs.readFile(file, 'utf-8');
+    return h.response(f).code(200);
+  } catch (e) {
+    console.log(e);
+    return h.response({ message: 'fail' }).code(500);
+  }
+}
+
+module.exports = {
+  postComment, getComment, deleteComment, getHtml,
+};

@@ -9,12 +9,17 @@
     "start-dev": "nodemon server.js"
   },
   "nodemonConfig": {
-    "ignore": ["node_modules/*", "data/data.json"]
+    "ignore": [
+      "node_modules/*",
+      "data/data.json"
+    ]
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hapi/basic": "^7.0.2",
     "@hapi/hapi": "^21.3.10",
+    "@hapi/inert": "^7.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2"

@@ -1,19 +1,24 @@
-const { postComment, getComment, deleteComment } = require('./handler');
+const { postComment, getComment, deleteComment, getHtml } = require('./handler');
 
 const routes = [
   {
-    method: 'POST',
+    method: 'GET',
     path: '/',
+    handler: getHtml,
+  },
+  {
+    method: 'POST',
+    path: '/comment/',
     handler: postComment,
   },
   {
     method: 'GET',
-    path: '/',
+    path: '/comment/',
     handler: getComment,
   },
   {
-    method: 'POST',
-    path: '/delete',
+    method: 'DELETE',
+    path: '/comment/',
     handler: deleteComment,
   },
 ];
