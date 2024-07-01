@@ -8,9 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+console.log(path.join(__dirname, '../public'));
 
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use('/src', express.static(path.join(__dirname, 'src')));
+app.use('/public', express.static(path.join(__dirname, '../public')));
 
 // const authRoutes = require('./routes/auth');
 // const getCommentRoutes = require('./routes/getComment');
